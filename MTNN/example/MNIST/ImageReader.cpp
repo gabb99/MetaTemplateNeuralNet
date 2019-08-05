@@ -1,11 +1,5 @@
 #include "ImageReader.h"
 
-ImageReader::ImageReader()
-{
-	file = std::ifstream("", std::ios::in | std::ios::binary);
-	current = Matrix2D<float, 29, 29>(defaultval);
-}
-
 ImageReader::ImageReader(const ImageReader &obj)
 {
 	file = std::ifstream(obj.m_path, std::ios::in | std::ios::binary);

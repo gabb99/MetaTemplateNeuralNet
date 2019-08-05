@@ -191,7 +191,7 @@ typedef NeuralNet<InputLayer<1, 1, 29, 29>,
 typedef FeatureMap<1, 29, 29> NetInput;
 typedef FeatureMap<1, 10, 1> NetOutput;
 
-bool training = false;
+bool training = true;
 
 int main()
 {
@@ -237,9 +237,9 @@ int main()
         //load in images
         std::vector<std::pair<typename NetInput::type, int>> images(60000);
         std::vector<NetOutput> labels(10);
-        ImageReader trainImgs("data/train-images.idx3-ubyte");
+        ImageReader trainImgs("data/train-images-idx3-ubyte");
         trainImgs.defaultval = DEFAULT;
-        LabelReader trainLbls("data/train-labels.idx1-ubyte");
+        LabelReader trainLbls("data/train-labels-idx1-ubyte");
         trainLbls.defaultval = DEFAULT;
         for (int i = 0; i < 60000; ++i)
         {
@@ -380,9 +380,9 @@ int main()
 
     normal_line("Starting Testing");
 
-    ImageReader testImgs("data/t10k-images.idx3-ubyte");
+    ImageReader testImgs("data/t10k-images-idx3-ubyte");
     testImgs.defaultval = DEFAULT;
-    LabelReader testLbls("data/t10k-labels.idx1-ubyte");
+    LabelReader testLbls("data/t10k-labels-idx1-ubyte");
     testLbls.defaultval = DEFAULT;
     int correct = 0;
 

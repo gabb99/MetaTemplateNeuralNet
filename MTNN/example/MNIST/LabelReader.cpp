@@ -1,11 +1,5 @@
 #include "LabelReader.h"
 
-LabelReader::LabelReader()
-{
-	file = std::ifstream("", std::ios::in | std::ios::binary);
-	current = Matrix2D<float, 10, 1>(defaultval);
-}
-
 LabelReader::LabelReader(const LabelReader &obj)
 {
 	file = std::ifstream(obj.m_path, std::ios::in | std::ios::binary);

@@ -6,7 +6,6 @@
 class ImageReader
 {
 public:
-	ImageReader();
 	ImageReader(const ImageReader &obj);
 	ImageReader(const std::string &path);
 	~ImageReader() = default;

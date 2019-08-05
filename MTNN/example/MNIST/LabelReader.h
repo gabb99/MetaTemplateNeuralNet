@@ -6,7 +6,6 @@
 class LabelReader
 {
 public:
-	LabelReader();
 	LabelReader(const LabelReader &obj);
 	LabelReader(const std::string &path);
 	~LabelReader() = default;
