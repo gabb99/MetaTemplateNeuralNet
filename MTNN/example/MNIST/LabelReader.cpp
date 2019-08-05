@@ -4,7 +4,6 @@ LabelReader::LabelReader()
 {
 	file = std::ifstream("", std::ios::in | std::ios::binary);
 	current = Matrix2D<float, 10, 1>(defaultval);
-	char c;
 }
 
 LabelReader::LabelReader(const LabelReader &obj)

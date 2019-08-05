@@ -196,10 +196,10 @@ bool training = false;
 int main()
 {
     //get string path
-    auto net_file_path = CSTRING("data//net.nn");
+    auto net_file_path = CSTRING("data/net.nn");
     using net_path_type = decltype(net_file_path);
 
-    auto pretrain_file_path = CSTRING("data//mnist.nn");
+    auto pretrain_file_path = CSTRING("data/mnist.nn");
     using pretrain_path_type = decltype(pretrain_file_path);
 
     Net::learning_rate = .001f;
@@ -210,7 +210,6 @@ int main()
 
     //timing variables
     float t = 0.0f;
-    float e_t = 0.0f;
     float p_e_t = 0.0f;
 
     float mse = 1.0f;
@@ -238,9 +237,9 @@ int main()
         //load in images
         std::vector<std::pair<typename NetInput::type, int>> images(60000);
         std::vector<NetOutput> labels(10);
-        ImageReader trainImgs("data//train-images.idx3-ubyte");
+        ImageReader trainImgs("data/train-images.idx3-ubyte");
         trainImgs.defaultval = DEFAULT;
-        LabelReader trainLbls("data//train-labels.idx1-ubyte");
+        LabelReader trainLbls("data/train-labels.idx1-ubyte");
         trainLbls.defaultval = DEFAULT;
         for (int i = 0; i < 60000; ++i)
         {
@@ -362,7 +361,7 @@ int main()
             p_e_t += t;
             normal_line("(training) Epoch " + std::to_string(e) + " was completed in " + std::to_string(t / CLOCKS_PER_SEC) + " seconds");
             Net::save_data<net_path_type>();
-            NeuralNetAnalyzer<Net>::save_mean_error("data//mse.dat");
+            NeuralNetAnalyzer<Net>::save_mean_error("data/mse.dat");
             t = clock();
         }
         std::vector<NetInput> training_set_images(60000);
@@ -381,9 +380,9 @@ int main()
 
     normal_line("Starting Testing");
 
-    ImageReader testImgs("data//t10k-images.idx3-ubyte");
+    ImageReader testImgs("data/t10k-images.idx3-ubyte");
     testImgs.defaultval = DEFAULT;
-    LabelReader testLbls("data//t10k-labels.idx1-ubyte");
+    LabelReader testLbls("data/t10k-labels.idx1-ubyte");
     testLbls.defaultval = DEFAULT;
     int correct = 0;
 
@@ -422,7 +421,5 @@ int main()
         }
     }
 
-    normal_line("Press any key to exit");
-    getchar();
     return 0;
 }

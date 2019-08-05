@@ -118,7 +118,5 @@ int main(int argc, char** argv)
     Net::discriminate(inputs);
     std::cout << "Net value with input of 1 (after load): " << OUTPUT_INV_TRANSFORM(Net::template get_batch_activations<Net::last_layer_index>()[0][0].at(0, 0)) << std::endl;
 
-    std::cout << "\n\nPress any key to exit" << std::endl;
-    getchar();
     return 0;
 }

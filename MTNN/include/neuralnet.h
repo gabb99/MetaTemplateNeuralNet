@@ -39,9 +39,9 @@ template<size_t i, size_t UPPER, size_t STEP, template<size_t> class func, typen
     {
         func<i>{args...};
 #if !defined(_MSC_VER) && !defined(clang)
-        auto next = for_loop_inc_impl<i + STEP, UPPER, STEP, func, Args...>{args...};
+        for_loop_inc_impl<i + STEP, UPPER, STEP, func, Args...>{args...};
 #else
-        auto next = for_loop_inc_impl<i + STEP, UPPER, STEP, func, Args...>(args..., 0);
+        for_loop_inc_impl<i + STEP, UPPER, STEP, func, Args...>(args..., 0);
 #endif
     }
 
@@ -60,9 +60,9 @@ template<size_t i, size_t LOWER, size_t STEP, template<size_t> class func, typen
     {
         func<i>{args...};
 #if !defined(_MSC_VER)
-        auto next = for_loop_dec_impl<i - STEP, LOWER, STEP, func, Args...>{args...};
+        for_loop_dec_impl<i - STEP, LOWER, STEP, func, Args...>{args...};
 #else
-        auto next = for_loop_dec_impl<i - STEP, LOWER, STEP, func, Args...>(args..., 0);
+        for_loop_dec_impl<i - STEP, LOWER, STEP, func, Args...>(args..., 0);
 #endif
     }
 
@@ -1818,10 +1818,12 @@ global_error(typename get_type<sizeof...(layers)-1, layers...>::feature_maps_typ
             for (size_t i = 0; i < labels[f].rows(); ++i)
                 for (size_t j = 0; j < labels[f].cols(); ++j)
                     sum += -1 * (labels[f].at(i, j) * log(output[f].at(i, j)));
-        return sum;
     }
     else if (loss_function == MTNN_LOSS_CUSTOMTARGETS)
-        return 0;
+		{
+		}
+
+	return sum;
 }
 
 template<typename... layers>
