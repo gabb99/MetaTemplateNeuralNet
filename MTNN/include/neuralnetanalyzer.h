@@ -45,9 +45,9 @@ private:
                             float grad = layer::weights_gradient_global[d].at(i, j);
                             //add to total
                             if (!proportional)
-                                total_grad_error += abs(layer::weights_gradient_global[d].at(i, j) - appr_grad);
+                                total_grad_error += abs(grad - appr_grad);
                             else
-                                total_grad_error += abs((layer::weights_gradient_global[d].at(i, j) - appr_grad) / layer::weights_gradient_global[d].at(i, j));
+                                total_grad_error += abs((grad - appr_grad) / grad);
 
                             //reset
                             layer::weights_global[d].at(i, j) += .001f;
@@ -72,11 +72,12 @@ private:
 
                             float adj_error = net::global_error();
                             float appr_grad = -(adj_error - original_net_error) / .001f;
+														float grad = layer::biases_gradient_global[d].at(i, j);
 
                             if (!proportional)
-                                total_grad_error += abs(layer::biases_gradient_global[d].at(i, j) - appr_grad);
+                                total_grad_error += abs(grad - appr_grad);
                             else
-                                total_grad_error += abs((layer::biases_gradient_global[d].at(i, j) - appr_grad) / layer::biases_gradient_global[d].at(i, j));
+                                total_grad_error += abs((grad - appr_grad) / grad);
 
                             layer::biases_global[d].at(i, j) += .001f;
                         }
